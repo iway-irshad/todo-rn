@@ -98,12 +98,17 @@ const ThemeContext = createContext<undefined | ThemeContextType>(undefined);
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  useEffect(() => {
-    // get the user's choice
-    AsyncStorage.getItem("darkMode").then((value) => {
-      if (value) setIsDarkMode(JSON.parse(value));
-    });
-  }, []);
+useEffect(() => {
+    AsyncStorage.getItem("darkMode")
+      .then((value) => {
+        if (value !== null) {
+          setIsDarkMode(JSON.parse(value));
+        }
+      })
+      .catch((error) => {
+          console.error("Failed to load theme preference:", error);
+      });
+}, []);
 
   const toggleDarkMode = async () => {
     const newMode = !isDarkMode;
