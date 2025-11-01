@@ -7,6 +7,7 @@ export default function Index() {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: '#e9ead8'
       }}
     >
       <Text>Edit app/index.tsx to edit this screen123...</Text>
